@@ -41,7 +41,7 @@ module "database" {
   location            = var.location
   admin_user          = "adminuser"
   admin_password      = "P@ssword123"
-  subnet_id           = module.virtual_network.subnets[1]  # ID du subnet 'database-subnet'
+  subnet_id           = module.virtual_network.subnet_id
   suffix             = random_id.suffix.hex
 }
 

@@ -1,0 +1,1206 @@
+{
+  "version": 4,
+  "terraform_version": "1.13.5",
+  "serial": 46,
+  "lineage": "4e928138-7426-8827-8543-daa4be50db04",
+  "outputs": {
+    "function_url": {
+      "value": "https://counter-function-497a8d.azurewebsites.net/api/counter",
+      "type": "string"
+    },
+    "rg_name": {
+      "value": "Cloud-computing-project-e213604e606a",
+      "type": "string"
+    },
+    "server_name": {
+      "value": "counter-e213604e606a",
+      "type": "string"
+    },
+    "sql_connection_string": {
+      "value": "counter-e213604e606a.database.windows.net",
+      "type": "string"
+    },
+    "static_website_url": {
+      "value": "https://storagetodo21032fbe.z28.web.core.windows.net/",
+      "type": "string"
+    }
+  },
+  "resources": [
+    {
+      "mode": "managed",
+      "type": "random_id",
+      "name": "suffix",
+      "provider": "provider[\"registry.terraform.io/hashicorp/random\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "b64_std": "4hNgTmBq",
+            "b64_url": "4hNgTmBq",
+            "byte_length": 6,
+            "dec": "248572848005226",
+            "hex": "e213604e606a",
+            "id": "4hNgTmBq",
+            "keepers": null,
+            "prefix": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0
+        }
+      ]
+    },
+    {
+      "module": "module.counter_function",
+      "mode": "managed",
+      "type": "azurerm_linux_function_app",
+      "name": "function_app",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "app_settings": {
+              "SQL_DATABASE": "counter",
+              "SQL_PASSWORD": "P@ssword123",
+              "SQL_SERVER": "counter-e213604e606a.database.windows.net",
+              "SQL_USER": "adminuser"
+            },
+            "auth_settings": [],
+            "auth_settings_v2": [],
+            "backup": [],
+            "builtin_logging_enabled": true,
+            "client_certificate_enabled": false,
+            "client_certificate_exclusion_paths": "",
+            "client_certificate_mode": "Optional",
+            "connection_string": [],
+            "content_share_force_disabled": false,
+            "custom_domain_verification_id": "0EDBDEE165D95A64F95ADD3A52DE36B588CECED8355B22C0F9C315EACACE2CD0",
+            "daily_memory_time_quota": 0,
+            "default_hostname": "counter-function-497a8d.azurewebsites.net",
+            "enabled": true,
+            "ftp_publish_basic_authentication_enabled": true,
+            "functions_extension_version": "~4",
+            "hosting_environment_id": "",
+            "https_only": false,
+            "id": "/subscriptions/90304447-11f6-4097-a50d-23555344115e/resourceGroups/Cloud-computing-project-e213604e606a/providers/Microsoft.Web/sites/counter-function-497a8d",
+            "identity": [],
+            "key_vault_reference_identity_id": "SystemAssigned",
+            "kind": "functionapp,linux",
+            "location": "francecentral",
+            "name": "counter-function-497a8d",
+            "outbound_ip_address_list": [
+              "40.89.130.0",
+              "40.89.139.181",
+              "40.89.166.179",
+              "40.89.161.203",
+              "40.79.130.129"
+            ],
+            "outbound_ip_addresses": "40.89.130.0,40.89.139.181,40.89.166.179,40.89.161.203,40.79.130.129",
+            "possible_outbound_ip_address_list": [
+              "40.89.130.0",
+              "40.89.139.181",
+              "40.89.166.179",
+              "40.89.161.203",
+              "40.89.130.122",
+              "40.89.164.243",
+              "40.89.161.127",
+              "40.89.163.147",
+              "40.89.134.161",
+              "20.74.71.248",
+              "20.74.71.250",
+              "20.199.0.2",
+              "20.199.0.85",
+              "20.199.0.141",
+              "20.199.1.66",
+              "20.199.1.83",
+              "20.199.1.153",
+              "20.199.1.185",
+              "20.199.1.194",
+              "20.199.2.15",
+              "20.199.2.28",
+              "40.79.130.129"
+            ],
+            "possible_outbound_ip_addresses": "40.89.130.0,40.89.139.181,40.89.166.179,40.89.161.203,40.89.130.122,40.89.164.243,40.89.161.127,40.89.163.147,40.89.134.161,20.74.71.248,20.74.71.250,20.199.0.2,20.199.0.85,20.199.0.141,20.199.1.66,20.199.1.83,20.199.1.153,20.199.1.185,20.199.1.194,20.199.2.15,20.199.2.28,40.79.130.129",
+            "public_network_access_enabled": true,
+            "resource_group_name": "Cloud-computing-project-e213604e606a",
+            "service_plan_id": "/subscriptions/90304447-11f6-4097-a50d-23555344115e/resourceGroups/Cloud-computing-project-e213604e606a/providers/Microsoft.Web/serverFarms/function-plan-497a8d",
+            "site_config": [
+              {
+                "always_on": false,
+                "api_definition_url": "",
+                "api_management_api_id": "",
+                "app_command_line": "",
+                "app_scale_limit": 200,
+                "app_service_logs": [],
+                "application_insights_connection_string": "",
+                "application_insights_key": "",
+                "application_stack": [
+                  {
+                    "docker": [],
+                    "dotnet_version": "",
+                    "java_version": "",
+                    "node_version": "18",
+                    "powershell_core_version": "",
+                    "python_version": "",
+                    "use_custom_runtime": false,
+                    "use_dotnet_isolated_runtime": false
+                  }
+                ],
+                "container_registry_managed_identity_client_id": "",
+                "container_registry_use_managed_identity": false,
+                "cors": [],
+                "default_documents": [
+                  "Default.htm",
+                  "Default.html",
+                  "Default.asp",
+                  "index.htm",
+                  "index.html",
+                  "iisstart.htm",
+                  "default.aspx",
+                  "index.php"
+                ],
+                "detailed_error_logging_enabled": false,
+                "elastic_instance_minimum": 1,
+                "ftps_state": "Disabled",
+                "health_check_eviction_time_in_min": 0,
+                "health_check_path": "",
+                "http2_enabled": false,
+                "ip_restriction": [],
+                "ip_restriction_default_action": "Allow",
+                "linux_fx_version": "NODE|18",
+                "load_balancing_mode": "LeastRequests",
+                "managed_pipeline_mode": "Integrated",
+                "minimum_tls_version": "1.2",
+                "pre_warmed_instance_count": 0,
+                "remote_debugging_enabled": false,
+                "remote_debugging_version": "",
+                "runtime_scale_monitoring_enabled": false,
+                "scm_ip_restriction": [],
+                "scm_ip_restriction_default_action": "Allow",
+                "scm_minimum_tls_version": "1.2",
+                "scm_type": "None",
+                "scm_use_main_ip_restriction": false,
+                "use_32_bit_worker": false,
+                "vnet_route_all_enabled": false,
+                "websockets_enabled": false,
+                "worker_count": 1
+              }
+            ],
+            "site_credential": [
+              {
+                "name": "$counter-function-497a8d",
+                "password": "0cH55XBuFmkj3qhRYcEXRonyaAfqxmwfKDnHaHmGwEtfXCDf7DeNeYQy4i3l"
+              }
+            ],
+            "sticky_settings": [],
+            "storage_account": [],
+            "storage_account_access_key": "icwtB8Ae+nqYF0sB6lp0xfatVyj/IGsWfDu8UmMGVh1G8eRGyDrEJdWiaLQCQjv5n+X90jNBV8Wg+AStV3/iNQ==",
+            "storage_account_name": "functstorage497a8d",
+            "storage_key_vault_secret_id": "",
+            "storage_uses_managed_identity": false,
+            "tags": {},
+            "timeouts": null,
+            "virtual_network_subnet_id": "",
+            "webdeploy_publish_basic_authentication_enabled": true,
+            "zip_deploy_file": "modules/function_app/../function_code/function.zip"
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "app_settings"
+              },
+              {
+                "type": "index",
+                "value": {
+                  "value": "SQL_PASSWORD",
+                  "type": "string"
+                }
+              }
+            ],
+            [
+              {
+                "type": "get_attr",
+                "value": "custom_domain_verification_id"
+              }
+            ],
+            [
+              {
+                "type": "get_attr",
+                "value": "site_config"
+              },
+              {
+                "type": "index",
+                "value": {
+                  "value": 0,
+                  "type": "number"
+                }
+              },
+              {
+                "type": "get_attr",
+                "value": "application_insights_connection_string"
+              }
+            ],
+            [
+              {
+                "type": "get_attr",
+                "value": "site_config"
+              },
+              {
+                "type": "index",
+                "value": {
+                  "value": 0,
+                  "type": "number"
+                }
+              },
+              {
+                "type": "get_attr",
+                "value": "application_insights_key"
+              }
+            ],
+            [
+              {
+                "type": "get_attr",
+                "value": "site_credential"
+              }
+            ],
+            [
+              {
+                "type": "get_attr",
+                "value": "storage_account_access_key"
+              }
+            ]
+          ],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfSwic2NoZW1hX3ZlcnNpb24iOiIxIn0=",
+          "dependencies": [
+            "module.counter_function.azurerm_service_plan.function_plan",
+            "module.counter_function.azurerm_storage_account.function_storage",
+            "module.counter_function.random_id.suffix",
+            "module.database.azurerm_mssql_database.db",
+            "module.database.azurerm_mssql_server.server",
+            "module.resource_group.azurerm_resource_group.rg",
+            "random_id.suffix"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.counter_function",
+      "mode": "managed",
+      "type": "azurerm_service_plan",
+      "name": "function_plan",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "app_service_environment_id": "",
+            "id": "/subscriptions/90304447-11f6-4097-a50d-23555344115e/resourceGroups/Cloud-computing-project-e213604e606a/providers/Microsoft.Web/serverFarms/function-plan-497a8d",
+            "kind": "functionapp",
+            "location": "francecentral",
+            "maximum_elastic_worker_count": 0,
+            "name": "function-plan-497a8d",
+            "os_type": "Linux",
+            "per_site_scaling_enabled": false,
+            "reserved": true,
+            "resource_group_name": "Cloud-computing-project-e213604e606a",
+            "sku_name": "Y1",
+            "tags": {},
+            "timeouts": null,
+            "worker_count": 0,
+            "zone_balancing_enabled": false
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozNjAwMDAwMDAwMDAwLCJkZWxldGUiOjM2MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjozNjAwMDAwMDAwMDAwfSwic2NoZW1hX3ZlcnNpb24iOiIxIn0=",
+          "dependencies": [
+            "module.counter_function.random_id.suffix",
+            "module.resource_group.azurerm_resource_group.rg",
+            "random_id.suffix"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.counter_function",
+      "mode": "managed",
+      "type": "azurerm_storage_account",
+      "name": "function_storage",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 4,
+          "attributes": {
+            "access_tier": "Hot",
+            "account_kind": "StorageV2",
+            "account_replication_type": "LRS",
+            "account_tier": "Standard",
+            "allow_nested_items_to_be_public": true,
+            "allowed_copy_scope": "",
+            "azure_files_authentication": [],
+            "blob_properties": [
+              {
+                "change_feed_enabled": false,
+                "change_feed_retention_in_days": 0,
+                "container_delete_retention_policy": [],
+                "cors_rule": [],
+                "default_service_version": "",
+                "delete_retention_policy": [],
+                "last_access_time_enabled": false,
+                "restore_policy": [],
+                "versioning_enabled": false
+              }
+            ],
+            "cross_tenant_replication_enabled": true,
+            "custom_domain": [],
+            "customer_managed_key": [],
+            "default_to_oauth_authentication": false,
+            "dns_endpoint_type": "Standard",
+            "edge_zone": "",
+            "enable_https_traffic_only": true,
+            "https_traffic_only_enabled": true,
+            "id": "/subscriptions/90304447-11f6-4097-a50d-23555344115e/resourceGroups/Cloud-computing-project-e213604e606a/providers/Microsoft.Storage/storageAccounts/functstorage497a8d",
+            "identity": [],
+            "immutability_policy": [],
+            "infrastructure_encryption_enabled": false,
+            "is_hns_enabled": false,
+            "large_file_share_enabled": false,
+            "local_user_enabled": true,
+            "location": "francecentral",
+            "min_tls_version": "TLS1_2",
+            "name": "functstorage497a8d",
+            "network_rules": [],
+            "nfsv3_enabled": false,
+            "primary_access_key": "icwtB8Ae+nqYF0sB6lp0xfatVyj/IGsWfDu8UmMGVh1G8eRGyDrEJdWiaLQCQjv5n+X90jNBV8Wg+AStV3/iNQ==",
+            "primary_blob_connection_string": "DefaultEndpointsProtocol=https;BlobEndpoint=https://functstorage497a8d.blob.core.windows.net/;AccountName=functstorage497a8d;AccountKey=icwtB8Ae+nqYF0sB6lp0xfatVyj/IGsWfDu8UmMGVh1G8eRGyDrEJdWiaLQCQjv5n+X90jNBV8Wg+AStV3/iNQ==",
+            "primary_blob_endpoint": "https://functstorage497a8d.blob.core.windows.net/",
+            "primary_blob_host": "functstorage497a8d.blob.core.windows.net",
+            "primary_blob_internet_endpoint": "",
+            "primary_blob_internet_host": "",
+            "primary_blob_microsoft_endpoint": "",
+            "primary_blob_microsoft_host": "",
+            "primary_connection_string": "DefaultEndpointsProtocol=https;AccountName=functstorage497a8d;AccountKey=icwtB8Ae+nqYF0sB6lp0xfatVyj/IGsWfDu8UmMGVh1G8eRGyDrEJdWiaLQCQjv5n+X90jNBV8Wg+AStV3/iNQ==;EndpointSuffix=core.windows.net",
+            "primary_dfs_endpoint": "https://functstorage497a8d.dfs.core.windows.net/",
+            "primary_dfs_host": "functstorage497a8d.dfs.core.windows.net",
+            "primary_dfs_internet_endpoint": "",
+            "primary_dfs_internet_host": "",
+            "primary_dfs_microsoft_endpoint": "",
+            "primary_dfs_microsoft_host": "",
+            "primary_file_endpoint": "https://functstorage497a8d.file.core.windows.net/",
+            "primary_file_host": "functstorage497a8d.file.core.windows.net",
+            "primary_file_internet_endpoint": "",
+            "primary_file_internet_host": "",
+            "primary_file_microsoft_endpoint": "",
+            "primary_file_microsoft_host": "",
+            "primary_location": "francecentral",
+            "primary_queue_endpoint": "https://functstorage497a8d.queue.core.windows.net/",
+            "primary_queue_host": "functstorage497a8d.queue.core.windows.net",
+            "primary_queue_microsoft_endpoint": "",
+            "primary_queue_microsoft_host": "",
+            "primary_table_endpoint": "https://functstorage497a8d.table.core.windows.net/",
+            "primary_table_host": "functstorage497a8d.table.core.windows.net",
+            "primary_table_microsoft_endpoint": "",
+            "primary_table_microsoft_host": "",
+            "primary_web_endpoint": "https://functstorage497a8d.z28.web.core.windows.net/",
+            "primary_web_host": "functstorage497a8d.z28.web.core.windows.net",
+            "primary_web_internet_endpoint": "",
+            "primary_web_internet_host": "",
+            "primary_web_microsoft_endpoint": "",
+            "primary_web_microsoft_host": "",
+            "public_network_access_enabled": true,
+            "queue_encryption_key_type": "Service",
+            "queue_properties": [
+              {
+                "cors_rule": [],
+                "hour_metrics": [
+                  {
+                    "enabled": false,
+                    "include_apis": false,
+                    "retention_policy_days": 0,
+                    "version": "1.0"
+                  }
+                ],
+                "logging": [
+                  {
+                    "delete": false,
+                    "read": false,
+                    "retention_policy_days": 0,
+                    "version": "1.0",
+                    "write": false
+                  }
+                ],
+                "minute_metrics": [
+                  {
+                    "enabled": false,
+                    "include_apis": false,
+                    "retention_policy_days": 0,
+                    "version": "1.0"
+                  }
+                ]
+              }
+            ],
+            "resource_group_name": "Cloud-computing-project-e213604e606a",
+            "routing": [],
+            "sas_policy": [],
+            "secondary_access_key": "OplPFekZhyYmIqtAnwPkKBEGo8sPKBaNiZM8VD5jBkFgnsfq+D+8KXQW8DNPzhUpk9OCVVULtxqH+AStXcB1aQ==",
+            "secondary_blob_connection_string": "",
+            "secondary_blob_endpoint": "",
+            "secondary_blob_host": "",
+            "secondary_blob_internet_endpoint": "",
+            "secondary_blob_internet_host": "",
+            "secondary_blob_microsoft_endpoint": "",
+            "secondary_blob_microsoft_host": "",
+            "secondary_connection_string": "DefaultEndpointsProtocol=https;AccountName=functstorage497a8d;AccountKey=OplPFekZhyYmIqtAnwPkKBEGo8sPKBaNiZM8VD5jBkFgnsfq+D+8KXQW8DNPzhUpk9OCVVULtxqH+AStXcB1aQ==;EndpointSuffix=core.windows.net",
+            "secondary_dfs_endpoint": "",
+            "secondary_dfs_host": "",
+            "secondary_dfs_internet_endpoint": "",
+            "secondary_dfs_internet_host": "",
+            "secondary_dfs_microsoft_endpoint": "",
+            "secondary_dfs_microsoft_host": "",
+            "secondary_file_endpoint": "",
+            "secondary_file_host": "",
+            "secondary_file_internet_endpoint": "",
+            "secondary_file_internet_host": "",
+            "secondary_file_microsoft_endpoint": "",
+            "secondary_file_microsoft_host": "",
+            "secondary_location": "",
+            "secondary_queue_endpoint": "",
+            "secondary_queue_host": "",
+            "secondary_queue_microsoft_endpoint": "",
+            "secondary_queue_microsoft_host": "",
+            "secondary_table_endpoint": "",
+            "secondary_table_host": "",
+            "secondary_table_microsoft_endpoint": "",
+            "secondary_table_microsoft_host": "",
+            "secondary_web_endpoint": "",
+            "secondary_web_host": "",
+            "secondary_web_internet_endpoint": "",
+            "secondary_web_internet_host": "",
+            "secondary_web_microsoft_endpoint": "",
+            "secondary_web_microsoft_host": "",
+            "sftp_enabled": false,
+            "share_properties": [
+              {
+                "cors_rule": [],
+                "retention_policy": [
+                  {
+                    "days": 7
+                  }
+                ],
+                "smb": []
+              }
+            ],
+            "shared_access_key_enabled": true,
+            "static_website": [],
+            "table_encryption_key_type": "Service",
+            "tags": {},
+            "timeouts": null
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "primary_access_key"
+              }
+            ],
+            [
+              {
+                "type": "get_attr",
+                "value": "primary_blob_connection_string"
+              }
+            ],
+            [
+              {
+                "type": "get_attr",
+                "value": "primary_connection_string"
+              }
+            ],
+            [
+              {
+                "type": "get_attr",
+                "value": "secondary_access_key"
+              }
+            ],
+            [
+              {
+                "type": "get_attr",
+                "value": "secondary_blob_connection_string"
+              }
+            ],
+            [
+              {
+                "type": "get_attr",
+                "value": "secondary_connection_string"
+              }
+            ]
+          ],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozNjAwMDAwMDAwMDAwLCJkZWxldGUiOjM2MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjozNjAwMDAwMDAwMDAwfSwic2NoZW1hX3ZlcnNpb24iOiI0In0=",
+          "dependencies": [
+            "module.counter_function.random_id.suffix",
+            "module.resource_group.azurerm_resource_group.rg",
+            "random_id.suffix"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.counter_function",
+      "mode": "managed",
+      "type": "null_resource",
+      "name": "function_zip_trigger",
+      "provider": "provider[\"registry.terraform.io/hashicorp/null\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "5542893512459678758",
+            "triggers": {
+              "zip_hash": "b07a422f059dd34f753b65837a30e92681a493ef102142ed2db6c72f037ccc03"
+            }
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0
+        }
+      ]
+    },
+    {
+      "module": "module.counter_function",
+      "mode": "managed",
+      "type": "random_id",
+      "name": "suffix",
+      "provider": "provider[\"registry.terraform.io/hashicorp/random\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "b64_std": "SXqN",
+            "b64_url": "SXqN",
+            "byte_length": 3,
+            "dec": "4815501",
+            "hex": "497a8d",
+            "id": "SXqN",
+            "keepers": null,
+            "prefix": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0
+        }
+      ]
+    },
+    {
+      "module": "module.database",
+      "mode": "managed",
+      "type": "azurerm_mssql_database",
+      "name": "db",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "auto_pause_delay_in_minutes": 0,
+            "collation": "SQL_Latin1_General_CP1_CI_AS",
+            "create_mode": "Default",
+            "creation_source_database_id": null,
+            "elastic_pool_id": "",
+            "enclave_type": "",
+            "geo_backup_enabled": true,
+            "id": "/subscriptions/90304447-11f6-4097-a50d-23555344115e/resourceGroups/Cloud-computing-project-e213604e606a/providers/Microsoft.Sql/servers/counter-e213604e606a/databases/counter",
+            "identity": [],
+            "import": [],
+            "ledger_enabled": false,
+            "license_type": "LicenseIncluded",
+            "long_term_retention_policy": [
+              {
+                "immutable_backups_enabled": false,
+                "monthly_retention": "PT0S",
+                "week_of_year": 1,
+                "weekly_retention": "PT0S",
+                "yearly_retention": "PT0S"
+              }
+            ],
+            "maintenance_configuration_name": "SQL_Default",
+            "max_size_gb": 32,
+            "min_capacity": 0,
+            "name": "counter",
+            "read_replica_count": 0,
+            "read_scale": false,
+            "recover_database_id": null,
+            "recovery_point_id": null,
+            "restore_dropped_database_id": null,
+            "restore_long_term_retention_backup_id": null,
+            "restore_point_in_time": null,
+            "sample_name": null,
+            "secondary_type": "",
+            "server_id": "/subscriptions/90304447-11f6-4097-a50d-23555344115e/resourceGroups/Cloud-computing-project-e213604e606a/providers/Microsoft.Sql/servers/counter-e213604e606a",
+            "short_term_retention_policy": [
+              {
+                "backup_interval_in_hours": 12,
+                "retention_days": 7
+              }
+            ],
+            "sku_name": "GP_Gen5_2",
+            "storage_account_type": "Geo",
+            "tags": {},
+            "threat_detection_policy": [
+              {
+                "disabled_alerts": [],
+                "email_account_admins": "Disabled",
+                "email_addresses": [],
+                "retention_days": 0,
+                "state": "Disabled",
+                "storage_account_access_key": "",
+                "storage_endpoint": ""
+              }
+            ],
+            "timeouts": null,
+            "transparent_data_encryption_enabled": true,
+            "transparent_data_encryption_key_automatic_rotation_enabled": false,
+            "transparent_data_encryption_key_vault_key_id": "",
+            "zone_redundant": false
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "threat_detection_policy"
+              },
+              {
+                "type": "index",
+                "value": {
+                  "value": 0,
+                  "type": "number"
+                }
+              },
+              {
+                "type": "get_attr",
+                "value": "storage_account_access_key"
+              }
+            ]
+          ],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozNjAwMDAwMDAwMDAwLCJkZWxldGUiOjM2MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjozNjAwMDAwMDAwMDAwfSwic2NoZW1hX3ZlcnNpb24iOiIxIn0=",
+          "dependencies": [
+            "module.database.azurerm_mssql_server.server",
+            "module.resource_group.azurerm_resource_group.rg",
+            "random_id.suffix"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.database",
+      "mode": "managed",
+      "type": "azurerm_mssql_server",
+      "name": "server",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "administrator_login": "adminuser",
+            "administrator_login_password": "P@ssword123",
+            "azuread_administrator": [],
+            "connection_policy": "Default",
+            "fully_qualified_domain_name": "counter-e213604e606a.database.windows.net",
+            "id": "/subscriptions/90304447-11f6-4097-a50d-23555344115e/resourceGroups/Cloud-computing-project-e213604e606a/providers/Microsoft.Sql/servers/counter-e213604e606a",
+            "identity": [],
+            "location": "francecentral",
+            "minimum_tls_version": "1.2",
+            "name": "counter-e213604e606a",
+            "outbound_network_restriction_enabled": false,
+            "primary_user_assigned_identity_id": "",
+            "public_network_access_enabled": true,
+            "resource_group_name": "Cloud-computing-project-e213604e606a",
+            "restorable_dropped_database_ids": [],
+            "tags": {},
+            "timeouts": null,
+            "transparent_data_encryption_key_vault_key_id": "",
+            "version": "12.0"
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "administrator_login_password"
+              }
+            ]
+          ],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozNjAwMDAwMDAwMDAwLCJkZWxldGUiOjM2MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjozNjAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "module.resource_group.azurerm_resource_group.rg",
+            "random_id.suffix"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.database",
+      "mode": "managed",
+      "type": "azurerm_private_endpoint",
+      "name": "db_private_endpoint",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "custom_dns_configs": [
+              {
+                "fqdn": "counter-e213604e606a.database.windows.net",
+                "ip_addresses": [
+                  "10.0.1.4"
+                ]
+              }
+            ],
+            "custom_network_interface_name": "",
+            "id": "/subscriptions/90304447-11f6-4097-a50d-23555344115e/resourceGroups/Cloud-computing-project-e213604e606a/providers/Microsoft.Network/privateEndpoints/db-private-endpoint",
+            "ip_configuration": [],
+            "location": "francecentral",
+            "name": "db-private-endpoint",
+            "network_interface": [
+              {
+                "id": "/subscriptions/90304447-11f6-4097-a50d-23555344115e/resourceGroups/Cloud-computing-project-e213604e606a/providers/Microsoft.Network/networkInterfaces/db-private-endpoint.nic.158914d3-2a11-4169-8f96-997028b38f42",
+                "name": "db-private-endpoint.nic.158914d3-2a11-4169-8f96-997028b38f42"
+              }
+            ],
+            "private_dns_zone_configs": [],
+            "private_dns_zone_group": [],
+            "private_service_connection": [
+              {
+                "is_manual_connection": false,
+                "name": "sql-private-connection",
+                "private_connection_resource_alias": "",
+                "private_connection_resource_id": "/subscriptions/90304447-11f6-4097-a50d-23555344115e/resourceGroups/Cloud-computing-project-e213604e606a/providers/Microsoft.Sql/servers/counter-e213604e606a",
+                "private_ip_address": "10.0.1.4",
+                "request_message": "",
+                "subresource_names": [
+                  "sqlServer"
+                ]
+              }
+            ],
+            "resource_group_name": "Cloud-computing-project-e213604e606a",
+            "subnet_id": "/subscriptions/90304447-11f6-4097-a50d-23555344115e/resourceGroups/Cloud-computing-project-e213604e606a/providers/Microsoft.Network/virtualNetworks/vnet-10-0-0-0-16/subnets/database-subnet",
+            "tags": {},
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozNjAwMDAwMDAwMDAwLCJkZWxldGUiOjM2MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjozNjAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "module.database.azurerm_mssql_server.server",
+            "module.resource_group.azurerm_resource_group.rg",
+            "module.virtual_network.azurerm_subnet.database",
+            "module.virtual_network.azurerm_virtual_network.vnet",
+            "random_id.suffix"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.resource_group",
+      "mode": "managed",
+      "type": "azurerm_resource_group",
+      "name": "rg",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "/subscriptions/90304447-11f6-4097-a50d-23555344115e/resourceGroups/Cloud-computing-project-e213604e606a",
+            "location": "francecentral",
+            "managed_by": "",
+            "name": "Cloud-computing-project-e213604e606a",
+            "tags": {},
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo1NDAwMDAwMDAwMDAwLCJkZWxldGUiOjU0MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjo1NDAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "random_id.suffix"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.static_website",
+      "mode": "managed",
+      "type": "azurerm_storage_account",
+      "name": "static_site",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 4,
+          "attributes": {
+            "access_tier": "Hot",
+            "account_kind": "StorageV2",
+            "account_replication_type": "LRS",
+            "account_tier": "Standard",
+            "allow_nested_items_to_be_public": true,
+            "allowed_copy_scope": "",
+            "azure_files_authentication": [],
+            "blob_properties": [
+              {
+                "change_feed_enabled": false,
+                "change_feed_retention_in_days": 0,
+                "container_delete_retention_policy": [],
+                "cors_rule": [],
+                "default_service_version": "",
+                "delete_retention_policy": [],
+                "last_access_time_enabled": false,
+                "restore_policy": [],
+                "versioning_enabled": false
+              }
+            ],
+            "cross_tenant_replication_enabled": true,
+            "custom_domain": [],
+            "customer_managed_key": [],
+            "default_to_oauth_authentication": false,
+            "dns_endpoint_type": "Standard",
+            "edge_zone": "",
+            "enable_https_traffic_only": true,
+            "https_traffic_only_enabled": true,
+            "id": "/subscriptions/90304447-11f6-4097-a50d-23555344115e/resourceGroups/Cloud-computing-project-e213604e606a/providers/Microsoft.Storage/storageAccounts/storagetodo21032fbe",
+            "identity": [],
+            "immutability_policy": [],
+            "infrastructure_encryption_enabled": false,
+            "is_hns_enabled": false,
+            "large_file_share_enabled": false,
+            "local_user_enabled": true,
+            "location": "francecentral",
+            "min_tls_version": "TLS1_2",
+            "name": "storagetodo21032fbe",
+            "network_rules": [],
+            "nfsv3_enabled": false,
+            "primary_access_key": "eba02rgZ3+p8AbT2fOkoPJfUiA0XvJFZ7uzp/b0xXbt/RcndFzwKTBwCtmu9LIj16Bp8NAMrP5WI+AStZxoVVw==",
+            "primary_blob_connection_string": "DefaultEndpointsProtocol=https;BlobEndpoint=https://storagetodo21032fbe.blob.core.windows.net/;AccountName=storagetodo21032fbe;AccountKey=eba02rgZ3+p8AbT2fOkoPJfUiA0XvJFZ7uzp/b0xXbt/RcndFzwKTBwCtmu9LIj16Bp8NAMrP5WI+AStZxoVVw==",
+            "primary_blob_endpoint": "https://storagetodo21032fbe.blob.core.windows.net/",
+            "primary_blob_host": "storagetodo21032fbe.blob.core.windows.net",
+            "primary_blob_internet_endpoint": "",
+            "primary_blob_internet_host": "",
+            "primary_blob_microsoft_endpoint": "",
+            "primary_blob_microsoft_host": "",
+            "primary_connection_string": "DefaultEndpointsProtocol=https;AccountName=storagetodo21032fbe;AccountKey=eba02rgZ3+p8AbT2fOkoPJfUiA0XvJFZ7uzp/b0xXbt/RcndFzwKTBwCtmu9LIj16Bp8NAMrP5WI+AStZxoVVw==;EndpointSuffix=core.windows.net",
+            "primary_dfs_endpoint": "https://storagetodo21032fbe.dfs.core.windows.net/",
+            "primary_dfs_host": "storagetodo21032fbe.dfs.core.windows.net",
+            "primary_dfs_internet_endpoint": "",
+            "primary_dfs_internet_host": "",
+            "primary_dfs_microsoft_endpoint": "",
+            "primary_dfs_microsoft_host": "",
+            "primary_file_endpoint": "https://storagetodo21032fbe.file.core.windows.net/",
+            "primary_file_host": "storagetodo21032fbe.file.core.windows.net",
+            "primary_file_internet_endpoint": "",
+            "primary_file_internet_host": "",
+            "primary_file_microsoft_endpoint": "",
+            "primary_file_microsoft_host": "",
+            "primary_location": "francecentral",
+            "primary_queue_endpoint": "https://storagetodo21032fbe.queue.core.windows.net/",
+            "primary_queue_host": "storagetodo21032fbe.queue.core.windows.net",
+            "primary_queue_microsoft_endpoint": "",
+            "primary_queue_microsoft_host": "",
+            "primary_table_endpoint": "https://storagetodo21032fbe.table.core.windows.net/",
+            "primary_table_host": "storagetodo21032fbe.table.core.windows.net",
+            "primary_table_microsoft_endpoint": "",
+            "primary_table_microsoft_host": "",
+            "primary_web_endpoint": "https://storagetodo21032fbe.z28.web.core.windows.net/",
+            "primary_web_host": "storagetodo21032fbe.z28.web.core.windows.net",
+            "primary_web_internet_endpoint": "",
+            "primary_web_internet_host": "",
+            "primary_web_microsoft_endpoint": "",
+            "primary_web_microsoft_host": "",
+            "public_network_access_enabled": true,
+            "queue_encryption_key_type": "Service",
+            "queue_properties": [
+              {
+                "cors_rule": [],
+                "hour_metrics": [
+                  {
+                    "enabled": false,
+                    "include_apis": false,
+                    "retention_policy_days": 0,
+                    "version": "1.0"
+                  }
+                ],
+                "logging": [
+                  {
+                    "delete": false,
+                    "read": false,
+                    "retention_policy_days": 0,
+                    "version": "1.0",
+                    "write": false
+                  }
+                ],
+                "minute_metrics": [
+                  {
+                    "enabled": false,
+                    "include_apis": false,
+                    "retention_policy_days": 0,
+                    "version": "1.0"
+                  }
+                ]
+              }
+            ],
+            "resource_group_name": "Cloud-computing-project-e213604e606a",
+            "routing": [],
+            "sas_policy": [],
+            "secondary_access_key": "8zibUI8d1krsilqZtB7CGNLaX1PXeZNnYz5vwl+/8WNvR4nYfArSe5kr5/aPmJfc2eEXjsUdw15r+AStud6f9g==",
+            "secondary_blob_connection_string": "",
+            "secondary_blob_endpoint": "",
+            "secondary_blob_host": "",
+            "secondary_blob_internet_endpoint": "",
+            "secondary_blob_internet_host": "",
+            "secondary_blob_microsoft_endpoint": "",
+            "secondary_blob_microsoft_host": "",
+            "secondary_connection_string": "DefaultEndpointsProtocol=https;AccountName=storagetodo21032fbe;AccountKey=8zibUI8d1krsilqZtB7CGNLaX1PXeZNnYz5vwl+/8WNvR4nYfArSe5kr5/aPmJfc2eEXjsUdw15r+AStud6f9g==;EndpointSuffix=core.windows.net",
+            "secondary_dfs_endpoint": "",
+            "secondary_dfs_host": "",
+            "secondary_dfs_internet_endpoint": "",
+            "secondary_dfs_internet_host": "",
+            "secondary_dfs_microsoft_endpoint": "",
+            "secondary_dfs_microsoft_host": "",
+            "secondary_file_endpoint": "",
+            "secondary_file_host": "",
+            "secondary_file_internet_endpoint": "",
+            "secondary_file_internet_host": "",
+            "secondary_file_microsoft_endpoint": "",
+            "secondary_file_microsoft_host": "",
+            "secondary_location": "",
+            "secondary_queue_endpoint": "",
+            "secondary_queue_host": "",
+            "secondary_queue_microsoft_endpoint": "",
+            "secondary_queue_microsoft_host": "",
+            "secondary_table_endpoint": "",
+            "secondary_table_host": "",
+            "secondary_table_microsoft_endpoint": "",
+            "secondary_table_microsoft_host": "",
+            "secondary_web_endpoint": "",
+            "secondary_web_host": "",
+            "secondary_web_internet_endpoint": "",
+            "secondary_web_internet_host": "",
+            "secondary_web_microsoft_endpoint": "",
+            "secondary_web_microsoft_host": "",
+            "sftp_enabled": false,
+            "share_properties": [
+              {
+                "cors_rule": [],
+                "retention_policy": [
+                  {
+                    "days": 7
+                  }
+                ],
+                "smb": []
+              }
+            ],
+            "shared_access_key_enabled": true,
+            "static_website": [
+              {
+                "error_404_document": "index.html",
+                "index_document": "index.html"
+              }
+            ],
+            "table_encryption_key_type": "Service",
+            "tags": {},
+            "timeouts": null
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "primary_access_key"
+              }
+            ],
+            [
+              {
+                "type": "get_attr",
+                "value": "primary_blob_connection_string"
+              }
+            ],
+            [
+              {
+                "type": "get_attr",
+                "value": "primary_connection_string"
+              }
+            ],
+            [
+              {
+                "type": "get_attr",
+                "value": "secondary_access_key"
+              }
+            ],
+            [
+              {
+                "type": "get_attr",
+                "value": "secondary_blob_connection_string"
+              }
+            ],
+            [
+              {
+                "type": "get_attr",
+                "value": "secondary_connection_string"
+              }
+            ]
+          ],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozNjAwMDAwMDAwMDAwLCJkZWxldGUiOjM2MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjozNjAwMDAwMDAwMDAwfSwic2NoZW1hX3ZlcnNpb24iOiI0In0=",
+          "dependencies": [
+            "module.resource_group.azurerm_resource_group.rg",
+            "module.static_website.random_id.rand",
+            "random_id.suffix"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.static_website",
+      "mode": "managed",
+      "type": "azurerm_storage_blob",
+      "name": "index_html",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "access_tier": "Hot",
+            "cache_control": "",
+            "content_md5": "",
+            "content_type": "text/html",
+            "encryption_scope": "",
+            "id": "https://storagetodo21032fbe.blob.core.windows.net/$web/index.html",
+            "metadata": {},
+            "name": "index.html",
+            "parallelism": 8,
+            "size": 0,
+            "source": "modules/static_website/../frontend_files/index.html",
+            "source_content": null,
+            "source_uri": null,
+            "storage_account_name": "storagetodo21032fbe",
+            "storage_container_name": "$web",
+            "timeouts": null,
+            "type": "Block",
+            "url": "https://storagetodo21032fbe.blob.core.windows.net/$web/index.html"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfSwic2NoZW1hX3ZlcnNpb24iOiIxIn0=",
+          "dependencies": [
+            "module.resource_group.azurerm_resource_group.rg",
+            "module.static_website.azurerm_storage_account.static_site",
+            "module.static_website.random_id.rand",
+            "random_id.suffix"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.static_website",
+      "mode": "managed",
+      "type": "random_id",
+      "name": "rand",
+      "provider": "provider[\"registry.terraform.io/hashicorp/random\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "b64_std": "IQMvvg==",
+            "b64_url": "IQMvvg",
+            "byte_length": 4,
+            "dec": "553856958",
+            "hex": "21032fbe",
+            "id": "IQMvvg",
+            "keepers": null,
+            "prefix": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0
+        }
+      ]
+    },
+    {
+      "module": "module.virtual_network",
+      "mode": "managed",
+      "type": "azurerm_subnet",
+      "name": "database",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "address_prefixes": [
+              "10.0.1.0/24"
+            ],
+            "default_outbound_access_enabled": true,
+            "delegation": [],
+            "enforce_private_link_endpoint_network_policies": false,
+            "enforce_private_link_service_network_policies": false,
+            "id": "/subscriptions/90304447-11f6-4097-a50d-23555344115e/resourceGroups/Cloud-computing-project-e213604e606a/providers/Microsoft.Network/virtualNetworks/vnet-10-0-0-0-16/subnets/database-subnet",
+            "name": "database-subnet",
+            "private_endpoint_network_policies": "Enabled",
+            "private_endpoint_network_policies_enabled": true,
+            "private_link_service_network_policies_enabled": true,
+            "resource_group_name": "Cloud-computing-project-e213604e606a",
+            "service_endpoint_policy_ids": [],
+            "service_endpoints": [],
+            "timeouts": null,
+            "virtual_network_name": "vnet-10-0-0-0-16"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "module.resource_group.azurerm_resource_group.rg",
+            "module.virtual_network.azurerm_virtual_network.vnet",
+            "random_id.suffix"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.virtual_network",
+      "mode": "managed",
+      "type": "azurerm_virtual_network",
+      "name": "vnet",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "address_space": [
+              "10.0.0.0/16"
+            ],
+            "bgp_community": "",
+            "ddos_protection_plan": [],
+            "dns_servers": [],
+            "edge_zone": "",
+            "encryption": [],
+            "flow_timeout_in_minutes": 0,
+            "guid": "d0d2797e-3c97-4805-a735-84a93e2d9fff",
+            "id": "/subscriptions/90304447-11f6-4097-a50d-23555344115e/resourceGroups/Cloud-computing-project-e213604e606a/providers/Microsoft.Network/virtualNetworks/vnet-10-0-0-0-16",
+            "location": "francecentral",
+            "name": "vnet-10-0-0-0-16",
+            "resource_group_name": "Cloud-computing-project-e213604e606a",
+            "subnet": [
+              {
+                "address_prefix": "10.0.1.0/24",
+                "id": "/subscriptions/90304447-11f6-4097-a50d-23555344115e/resourceGroups/Cloud-computing-project-e213604e606a/providers/Microsoft.Network/virtualNetworks/vnet-10-0-0-0-16/subnets/database-subnet",
+                "name": "database-subnet",
+                "security_group": ""
+              }
+            ],
+            "tags": {},
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "module.resource_group.azurerm_resource_group.rg",
+            "random_id.suffix"
+          ]
+        }
+      ]
+    }
+  ],
+  "check_results": null
+}

@@ -1,0 +1,16 @@
+{
+  "bindings": [
+    {
+      "authLevel": "anonymous",
+      "type": "httpTrigger",
+      "direction": "in",
+      "methods": ["get"],
+      "route": "counter"
+    },
+    {
+      "type": "http",
+      "direction": "out"
+    }
+  ],
+  "scriptFile": "index.js"
+}

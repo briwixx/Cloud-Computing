@@ -51,3 +51,16 @@ module "static_website" {
   resource_group_name = module.resource_group.name
   location            = var.location
 }
+
+
+module "counter_function" {
+  source = "./modules/function_app"
+  
+  resource_group_name = module.resource_group.name
+  location            = var.location
+
+  sql_server   = module.database.sql_server_fqdn
+  sql_database = module.database.sql_database_name
+  sql_user     = module.database.sql_admin_user
+  sql_password = module.database.sql_admin_password
+}

@@ -1,0 +1,9 @@
+{
+  "name": "counter-function",
+  "version": "1.0.0",
+  "description": "Azure Function that increments a counter in SQL Database",
+  "main": "index.js",
+  "dependencies": {
+    "tedious": "^18.0.0"
+  }
+}

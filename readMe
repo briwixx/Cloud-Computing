@@ -1,9 +1,8 @@
-Cloud Computing Project : 
+## 💡 Using the same Azure Resource Group
 
-to have the same resource group :
+To ensure all team members deploy into the exact same Azure Resource Group (already created by Terraform), follow these steps:
 
-
-```bash
-terraform plan
-terraform apply
-```
+### 1. Login to Azure
+```powershell
+az login
+az account set --subscription <SUBSCRIPTION_ID>

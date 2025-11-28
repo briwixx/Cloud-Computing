@@ -1,6 +1,9 @@
 Cloud Computing Project : 
 
+to have the same resource group :
 
-3 commands for terraform :
 
-terraform init
+```bash
+terraform plan
+terraform apply
+```

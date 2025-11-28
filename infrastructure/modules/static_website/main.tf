@@ -14,3 +14,16 @@ resource "azurerm_storage_account" "static_site" {
 resource "random_id" "rand" {
   byte_length = 4
 }
+
+resource "azurerm_storage_blob" "index_html" {
+  name                   = "index.html"
+  storage_account_name   = azurerm_storage_account.static_site.name
+  storage_container_name = "$web"
+  type                   = "Block"
+  source = "${path.module}/../frontend_files/index.html"
+  content_type           = "text/html"
+
+  depends_on = [
+    azurerm_storage_account.static_site
+  ]
+}

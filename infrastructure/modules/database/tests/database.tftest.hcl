@@ -1,7 +1,7 @@
 # Configuration du fournisseur AzureRM
 provider "azurerm" {
   features {}
-  subscription_id = "90304447-11f6-4097-a50d-23555344115e"  # Ton ID de souscription Azure
+    subscription_id = "90304447-11f6-4097-a50d-23555344115e"  # Ton ID de souscription Azure
 }
 
 # Test pour vérifier la création du serveur SQL
@@ -9,18 +9,18 @@ run "check_mssql_server" {
   command = apply
 
   variables {
-    database_name       = var.database_name
+    database_name      = var.database_name
     resource_group_name = var.resource_group_name
-    location            = var.location
-    suffix              = var.suffix
-    admin_user          = var.admin_user
-    admin_password      = var.admin_password
-    subnet_id           = var.subnet_id
+    location           = var.location
+    suffix             = var.suffix
+    admin_user         = var.admin_user
+    admin_password     = var.admin_password
+    subnet_id          = var.subnet_id
   }
 
   # Vérifier que le serveur SQL existe et que ses propriétés sont correctes
   assert {
-    condition     = azurerm_mssql_server.server.name == "${var.database_name}-${var.suffix}"
+    condition     = azurerm_mssql_server.server.name == "counter-${var.suffix}"
     error_message = "Le nom du serveur SQL est incorrect"
   }
 
@@ -40,15 +40,15 @@ run "check_mssql_database" {
   command = apply
 
   variables {
-    database_name       = var.database_name
+    database_name      = var.database_name
     resource_group_name = var.resource_group_name
-    location            = var.location
-    suffix              = var.suffix
+    location           = var.location
+    suffix             = var.suffix
   }
 
   # Vérifier que la base de données existe et que ses propriétés sont correctes
   assert {
-    condition     = azurerm_mssql_database.db.name == var.database_name
+    condition     = azurerm_mssql_database.db.name == "counter-${var.suffix}"
     error_message = "Le nom de la base de données est incorrect"
   }
 
@@ -64,8 +64,8 @@ run "check_private_endpoint" {
 
   variables {
     resource_group_name = var.resource_group_name
-    location            = var.location
-    subnet_id           = var.subnet_id
+    location           = var.location
+    subnet_id          = var.subnet_id
   }
 
   # Vérifier que le Private Endpoint existe et que ses propriétés sont correctes

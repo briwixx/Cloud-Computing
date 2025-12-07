@@ -3,5 +3,5 @@ variable "resource_group_name" {
 }
 
 variable "location" {
-  default = "North Europe"
+  default = "Norway East"
 }

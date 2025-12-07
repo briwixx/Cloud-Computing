@@ -1,7 +1,7 @@
 # Configuration du fournisseur AzureRM
 provider "azurerm" {
   features {}
-  subscription_id = "90304447-11f6-4097-a50d-23555344115e"  # Ton ID de souscription Azure
+    subscription_id = "90304447-11f6-4097-a50d-23555344115e"  # Ton ID de souscription Azure
 }
 
 # Test pour vérifier la création du réseau virtuel

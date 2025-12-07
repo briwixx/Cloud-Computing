@@ -1,7 +1,7 @@
 # Configuration du fournisseur AzureRM
 provider "azurerm" {
   features {}
-  subscription_id = "90304447-11f6-4097-a50d-23555344115e"  # Ton ID de souscription Azure
+    subscription_id = "90304447-11f6-4097-a50d-23555344115e"  # Ton ID de souscription Azure
 }
 
 # Test pour vérifier la création du groupe de ressources
@@ -10,7 +10,7 @@ run "check_resource_group" {
 
   variables {
     resource_group_name = "Cloud-computing-project-86c14ca58087"
-    location           = "northeurope"
+    location           = "Norway East"
     suffix             = "86c14ca58087"
   }
 

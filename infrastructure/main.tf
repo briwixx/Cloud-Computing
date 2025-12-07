@@ -18,7 +18,7 @@ resource "random_id" "suffix" {
 
 #Resource Group
 module "resource_group" {
-  source = "./modules/ressource_group"
+  source = "./modules/resource_group"
   resource_group_name = "Cloud-computing-project"
   location            = var.location
   suffix             = random_id.suffix.hex

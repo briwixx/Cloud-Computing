@@ -31,6 +31,14 @@ resource "azurerm_private_endpoint" "db_private_endpoint" {
   }
 }
 
+resource "azurerm_mssql_firewall_rule" "allow_azure" {               # En gros azure donne accés à d'autres trucs azure
+  name      = "allow-azure-services"
+  server_id = azurerm_mssql_server.server.id
+
+  # 0.0.0.0 = règle spéciale Azure = "Allow Azure services"
+  start_ip_address = "0.0.0.0"
+  end_ip_address   = "0.0.0.0"
+}
 
 
 

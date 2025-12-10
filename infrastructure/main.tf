@@ -4,6 +4,10 @@ terraform {
       source  = "hashicorp/azurerm"
       version = "~> 3.75"
     }
+    null = {
+      source  = "hashicorp/null"
+      version = "~> 3.2"
+    }
   }
 }
 
@@ -63,10 +67,57 @@ resource "azurerm_app_service" "frontend_app" {
   app_service_plan_id = azurerm_app_service_plan.plan.id
 }
 
-resource "azurerm_app_service" "backend_app" {
-  name                = "backend-app-test${random_id.suffix.hex}"
+resource "azurerm_service_plan" "backend_plan" {
+  name                = "backend-plan-${random_id.suffix.hex}"
   location            = var.location
   resource_group_name = module.resource_group.name
-  app_service_plan_id = azurerm_app_service_plan.plan.id
+  os_type             = "Linux"
+  sku_name            = "B1"   # minimum pour Node sur Linux
 }
 
+resource "azurerm_linux_web_app" "backend_app" {
+  name                = "backend-app-${random_id.suffix.hex}"
+  location            = var.location
+  resource_group_name = module.resource_group.name
+  service_plan_id     = azurerm_service_plan.backend_plan.id
+
+  site_config {
+    application_stack {
+      node_version = "20-lts"
+    }
+  }
+
+  app_settings = {
+    DB_CONNECTION_STRING = module.database.connection_string
+  }
+}
+
+
+resource "null_resource" "deploy_frontend" {
+  depends_on = [
+    azurerm_app_service.frontend_app
+  ]
+
+  # Si le zip change, Terraform re-déclenche le déploiement
+  triggers = {
+    zip_hash = filesha256("${path.module}/app.zip")
+  }
+
+  provisioner "local-exec" {
+    command = "az webapp deployment source config-zip --resource-group ${module.resource_group.name} --name ${azurerm_app_service.frontend_app.name} --src ${path.module}/app.zip"
+  }
+}
+
+resource "null_resource" "deploy_backend" {
+  depends_on = [
+    azurerm_linux_web_app.backend_app
+  ]
+
+  triggers = {
+    zip_hash = filesha256("${path.module}/backend.zip")
+  }
+
+  provisioner "local-exec" {
+    command = "az webapp deployment source config-zip --resource-group ${module.resource_group.name} --name ${azurerm_linux_web_app.backend_app.name} --src ${path.module}/backend.zip"
+  }
+}

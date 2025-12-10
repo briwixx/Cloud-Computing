@@ -76,3 +76,7 @@ Grâce à l’étape précédente, un groupe de ressources a maintenant été cr
 
 - **Réseau virtuel DMZ (`reseau_dmz`)**  
    A COMPLETER 
+
+---
+
+### 👁️ **Utilisation du site et suivi de la base de donnée**

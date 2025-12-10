@@ -7,3 +7,8 @@ output "sql_connection_string" {
 output "server_name" {
   value = azurerm_mssql_server.server.name
 }
+
+# Renvoie le nom de la base de données créée
+output "database_name" {
+  value = azurerm_mssql_database.db.name
+}

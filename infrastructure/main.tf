@@ -45,3 +45,28 @@ module "database" {
   suffix             = random_id.suffix.hex
 }
 
+#Web App
+resource "azurerm_app_service_plan" "plan" {
+  name                = "plan-test"
+  location            = var.location
+  resource_group_name = module.resource_group.name
+  sku {
+    tier = "Free"
+    size = "F1"
+  }
+}
+
+resource "azurerm_app_service" "frontend_app" {
+  name                = "frontend-app-test${random_id.suffix.hex}"
+  location            = var.location
+  resource_group_name = module.resource_group.name
+  app_service_plan_id = azurerm_app_service_plan.plan.id
+}
+
+resource "azurerm_app_service" "backend_app" {
+  name                = "backend-app-test${random_id.suffix.hex}"
+  location            = var.location
+  resource_group_name = module.resource_group.name
+  app_service_plan_id = azurerm_app_service_plan.plan.id
+}
+

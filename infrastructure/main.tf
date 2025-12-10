@@ -61,11 +61,16 @@ resource "azurerm_app_service_plan" "plan" {
 }
 
 resource "azurerm_app_service" "frontend_app" {
-  name                = "frontend-app-test${random_id.suffix.hex}"
+  name                = "frontend-app-${random_id.suffix.hex}"
   location            = var.location
   resource_group_name = module.resource_group.name
   app_service_plan_id = azurerm_app_service_plan.plan.id
+
+  app_settings = {
+    BACKEND_URL = "https://${azurerm_linux_web_app.backend_app.default_hostname}"
+  }
 }
+
 
 resource "azurerm_service_plan" "backend_plan" {
   name                = "backend-plan-${random_id.suffix.hex}"
@@ -108,6 +113,26 @@ resource "null_resource" "deploy_frontend" {
   }
 }
 
+# On injecte l'URL du backend dans le frontend après le déploiement du frontend
+resource "null_resource" "inject_backend_url" {
+  depends_on = [
+    null_resource.deploy_frontend
+  ]
+
+  provisioner "local-exec" {
+    command = <<EOT
+echo "window.BACKEND_URL = 'https://${azurerm_linux_web_app.backend_app.default_hostname}';" > config.js
+zip config.zip config.js
+az webapp deployment source config-zip \
+  --resource-group ${module.resource_group.name} \
+  --name ${azurerm_app_service.frontend_app.name} \
+  --src config.zip
+EOT
+  }
+}
+
+
+
 # On déploie le backend Node.js dans l'App Service Linux après sa création
 resource "null_resource" "deploy_backend" {
   depends_on = [
@@ -119,19 +144,15 @@ resource "null_resource" "deploy_backend" {
   }
 
   provisioner "local-exec" {
-    command = "az webapp deployment source config-zip --resource-group ${module.resource_group.name} --name ${azurerm_linux_web_app.backend_app.name} --src ${path.module}/backend.zip"
+    command = "az webapp deploy --resource-group ${module.resource_group.name} --name ${azurerm_linux_web_app.backend_app.name} --src-path ${path.module}/backend.zip --type zip"
   }
 }
 
-# On crée la table VisitCount dans la BDD après le déploiement de la BDD
-resource "null_resource" "init_visitcount_table" {
-  depends_on = [
-    module.database
-  ]
 
-  provisioner "local-exec" {
-    interpreter = ["PowerShell", "-Command"]
+# On crée la table VisitCount dans la BDD après le déploiement de la BDD à faire car sinon on doit la faire sur le CLI
 
-    command = "az sql db query --resource-group ${module.resource_group.name} --server ${module.database.server_name} --name ${module.database.database_name} --query \"IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'VisitCount') BEGIN CREATE TABLE VisitCount (Id INT PRIMARY KEY, Count INT NOT NULL); INSERT INTO VisitCount (Id, Count) VALUES (1, 0); END\""
-  }
+
+# On récupère les URLs des applications déployées pour faire le lien avec frontend/backend
+output "backend_url" {
+  value = azurerm_linux_web_app.backend_app.default_hostname
 }

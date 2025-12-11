@@ -54,7 +54,7 @@ module "database" {
   location            = var.location
   admin_user          = "adminuser"
   admin_password      = "P@ssword123"
-  subnet_id           = module.virtual_network.subnet_id
+  subnet_id           = module.virtual_network.database_internal_subnet_id
   suffix              = random_id.suffix.hex
 }
 
@@ -184,4 +184,40 @@ resource "null_resource" "deploy_backend" {
 # ---------------------------------------------------------
 output "backend_url" {
   value = azurerm_linux_web_app.backend_app.default_hostname
+}
+
+
+########
+# Virtual Machines in DMZ
+module "virtual_machines_dmz" {
+  source              = "./modules/virtual_machines_dmz"
+  vm_name             = "vm-dmz1"
+  resource_group_name = module.resource_group.name
+  location            = var.location
+  subnet_id           = module.virtual_network.website_service1_subnet_id
+  admin_username      = "adminuser"
+  admin_password      = "I_sen123456"
+  ssh_public_key      = "./.ssh/.ssh.pub"
+}
+module "virtual_machines_dmz_2" {
+  source              = "./modules/virtual_machines_dmz"
+  vm_name             = "vm-dmz2"
+  resource_group_name = module.resource_group.name
+  location            = var.location
+  subnet_id           = module.virtual_network.website_service2_subnet_id
+  admin_username      = "adminuser"
+  admin_password      = "I_sen123456"
+  ssh_public_key      = "./.ssh/.ssh.pub"
+}
+#########
+# Virtual Machines in Internal Network
+module "virtual_machines_internal" {
+  source              = "./modules/virtual_machines_internal"
+  vm_name             = "vm-internal1"
+  resource_group_name = module.resource_group.name
+  location            = var.location
+  subnet_id           = module.virtual_network.department1_internal_subnet_id
+  admin_username      = "adminuser"
+  admin_password      = "I_sen123456"
+  ssh_public_key      = "./.ssh/.ssh.pub"
 }

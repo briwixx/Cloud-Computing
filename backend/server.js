@@ -1,19 +1,23 @@
 const express = require("express");
 const sql = require("mssql");
 const cors = require("cors");
-app.use(cors());
-
-
 
 const app = express();
+
+// Middlewares
+app.use(cors());
 app.use(express.json());
 
+// Connection string récupérée depuis Azure App Service (app_settings)
 const connectionString = process.env.DB_CONNECTION_STRING;
 
 // Connexion SQL réutilisable
 let pool;
 async function getPool() {
   if (!pool) {
+    if (!connectionString) {
+      throw new Error("DB_CONNECTION_STRING is not defined");
+    }
     pool = await sql.connect(connectionString);
   }
   return pool;
@@ -60,7 +64,10 @@ async function handleVisit(req, res) {
 app.get("/api/visit", handleVisit);
 app.post("/api/visit", handleVisit);
 
+// Port imposé par Azure, sinon 3000 en local
 const port = process.env.PORT || 3000;
+
+// IMPORTANT : pas besoin de préciser host, Node écoute sur 0.0.0.0 par défaut
 app.listen(port, () => {
   console.log(`Backend running on port ${port}`);
 });

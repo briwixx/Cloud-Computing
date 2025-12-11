@@ -8,6 +8,7 @@ terraform {
       source  = "hashicorp/null"
       version = "~> 3.2"
     }
+    # Utile pour zipper le frontend/backend React
     archive = {
       source  = "hashicorp/archive"
       version = "~> 2.4"
@@ -18,6 +19,9 @@ terraform {
 provider "azurerm" {
   features {}
 }
+
+
+
 
 resource "random_id" "suffix" {
   byte_length = 6

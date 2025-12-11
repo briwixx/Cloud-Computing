@@ -1,1 +1,1 @@
-window.BACKEND_URL = "https://backend-app-2537858e6c2b.azurewebsites.net";
+window.BACKEND_URL = "https://backend-app-f95c20f6fd2d.azurewebsites.net";

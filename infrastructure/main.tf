@@ -8,6 +8,10 @@ terraform {
       source  = "hashicorp/null"
       version = "~> 3.2"
     }
+    archive = {
+      source  = "hashicorp/archive"
+      version = "~> 2.4"
+    }
   }
 }
 
@@ -22,10 +26,10 @@ resource "random_id" "suffix" {
 
 #Resource Group
 module "resource_group" {
-  source = "./modules/resource_group"
+  source              = "./modules/resource_group"
   resource_group_name = "Cloud-computing-project"
   location            = var.location
-  suffix             = random_id.suffix.hex
+  suffix              = random_id.suffix.hex
 }
 
 #Virtual Network
@@ -46,7 +50,7 @@ module "database" {
   admin_user          = "adminuser"
   admin_password      = "P@ssword123"
   subnet_id           = module.virtual_network.subnet_id
-  suffix             = random_id.suffix.hex
+  suffix              = random_id.suffix.hex
 }
 
 #Web App
@@ -66,9 +70,9 @@ resource "azurerm_app_service" "frontend_app" {
   resource_group_name = module.resource_group.name
   app_service_plan_id = azurerm_app_service_plan.plan.id
 
-  app_settings = {
-    BACKEND_URL = "https://${azurerm_linux_web_app.backend_app.default_hostname}"
-  }
+  # app_settings = {
+  #  BACKEND_URL = "https://${azurerm_linux_web_app.backend_app.default_hostname}"
+  # }
 }
 
 
@@ -77,7 +81,7 @@ resource "azurerm_service_plan" "backend_plan" {
   location            = var.location
   resource_group_name = module.resource_group.name
   os_type             = "Linux"
-  sku_name            = "B1"   # minimum pour Node sur Linux
+  sku_name            = "B1" # minimum pour Node sur Linux
 }
 
 resource "azurerm_linux_web_app" "backend_app" {
@@ -97,39 +101,53 @@ resource "azurerm_linux_web_app" "backend_app" {
   }
 }
 
+locals {
+  backend_url = "https://${azurerm_linux_web_app.backend_app.default_hostname}"
+}
+
+resource "local_file" "frontend_config" {
+  content = templatefile(
+    "${path.module}/../login/js/config.js.tftpl",
+    {
+      backend_url = local.backend_url
+    }
+  )
+
+  filename = "${path.module}/../login/js/config.js"
+}
+
+
+# On crée une archive zip du frontend React à déployer
+data "archive_file" "frontend_zip" {
+  type        = "zip"
+  source_dir  = "${path.module}/../login"
+  output_path = "${path.module}/app.zip"
+
+  # s'assurer que config.js est généré avant de zipper
+  depends_on = [local_file.frontend_config]
+}
+
+
+
 # On déploie le frontend React dans l'App Service après sa création
 resource "null_resource" "deploy_frontend" {
   depends_on = [
-    azurerm_app_service.frontend_app
+    azurerm_app_service.frontend_app,
+    data.archive_file.frontend_zip
   ]
 
-  # Si le zip change, Terraform re-déclenche le déploiement
+  # On force un redeploy à chaque `terraform apply`
   triggers = {
-    zip_hash = filesha256("${path.module}/app.zip")
+    always_run = timestamp()
   }
 
   provisioner "local-exec" {
-    command = "az webapp deployment source config-zip --resource-group ${module.resource_group.name} --name ${azurerm_app_service.frontend_app.name} --src ${path.module}/app.zip"
+    command = "az webapp deploy --resource-group ${module.resource_group.name} --name ${azurerm_app_service.frontend_app.name} --src-path ${data.archive_file.frontend_zip.output_path} --type zip"
   }
 }
 
-# On injecte l'URL du backend dans le frontend après le déploiement du frontend
-resource "null_resource" "inject_backend_url" {
-  depends_on = [
-    null_resource.deploy_frontend
-  ]
 
-  provisioner "local-exec" {
-    command = <<EOT
-echo "window.BACKEND_URL = 'https://${azurerm_linux_web_app.backend_app.default_hostname}';" > config.js
-zip config.zip config.js
-az webapp deployment source config-zip \
-  --resource-group ${module.resource_group.name} \
-  --name ${azurerm_app_service.frontend_app.name} \
-  --src config.zip
-EOT
-  }
-}
+
 
 
 

@@ -74,7 +74,7 @@ et modifié là pour y mettre une région dont vous avez accés.
 
 ---
 
-### **7ème étape : Ajouter la table SQL manuellement dans Azure**
+#### **7ème étape : Ajouter la table SQL manuellement dans Azure**
 
 Après le `terraform apply`, toute l’infrastructure est déployée automatiquement.  
 La seule intervention manuelle consiste à créer la table **VisitCount** dans la base SQL afin que le backend fonctionne correctement.
@@ -83,7 +83,7 @@ La seule intervention manuelle consiste à créer la table **VisitCount** dans l
 
 ---
 
-## 7.1 – Accéder à la base SQL dans Azure Portal
+#### 7.1 – Accéder à la base SQL dans Azure Portal
 
 1. Rendez-vous sur ➜ https://portal.azure.com  
 2. Dans le menu de gauche, cliquez sur **SQL Databases**  
@@ -97,7 +97,7 @@ La seule intervention manuelle consiste à créer la table **VisitCount** dans l
 
 ---
 
-## 7.2 – Ouvrir l’Éditeur de requêtes (Preview)
+#### 7.2 – Ouvrir l’Éditeur de requêtes (Preview)
 
 1. Dans le menu latéral de la base SQL, cliquez sur **Query Editor (preview)**  
 2. Connectez-vous avec :
@@ -115,7 +115,7 @@ La seule intervention manuelle consiste à créer la table **VisitCount** dans l
 
 ---
 
-## 7.3 – Créer la table `VisitCount`
+#### 7.3 – Créer la table `VisitCount`
 
 Dans la zone SQL, copiez-collez cette commande :
 
@@ -201,7 +201,7 @@ Pour ouvrir le site utilisateur, rendez-vous sur :
 **App Service → frontend-app-xxxx → Parcourir**  
 Cela ouvre directement le site dans votre navigateur.
 
-<div align="center"> <img width="794" height="697" alt="6" src="https://github.com/user-attachments/assets/fb5a55c2-adda-4a0c-adf5-5411cfa18f8b" /></div>
+<div align="center"><img width="503" height="417" alt="6" src="https://github.com/user-attachments/assets/06a0017c-e4c9-474b-bdef-598c8117945b" /></div>
 
 > Sur App Service, vous pouvez accéder également au backend pour tester les divers requêtes
 

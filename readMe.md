@@ -151,7 +151,7 @@ Vous devriez voir alors :
 
 ### 🏗️ **Architecture du projet**
 
-Grâce à l’étape précédente, un groupe de ressources a maintenant été créé sur le compte Azure. Ce groupe de ressource contient deux réseaux 'reseau_dmz' et 'reseau_interne' qui serviront d’architecture de base pour le projet (Image de la topologie des réseaux du groupe de ressources disponible dans ./topology.png).
+Grâce à l’étape précédente, un groupe de ressources a maintenant été créé sur le compte Azure. Ce groupe de ressource contient deux réseaux 'reseau_dmz' et 'reseau_interne' qui serviront d’architecture de base pour le projet (Image de la topologie des réseaux du groupe de ressources disponible dans [./topology.png](./topology.png) ).
 
 Le réseau DMZ est constitué de trois sous-réseaux : service1, service2 et service3. Ce sont des services qui seront visibles depuis internet donc qui sont plus vulnérables, on y retrouve : 
 -	Website_service1 : VM_dmz1 destinée à se connecter au réseau interne, c’est le seul sous-réseau autorisé par le pare-feu à communiquer avec le réseau interne.
